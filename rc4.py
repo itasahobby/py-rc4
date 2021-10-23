@@ -11,7 +11,7 @@ class Rc4:
         # Initialization
         temp = 0
         for i in range(256):
-            j = (temp + self.s_table[i] + key[i % len(key)] ) % 256
+            j = (temp + self.s_table[i] + key[i % len(key)]) % 256
             # Swap(S[i], S[j])
             self.s_table[i], self.s_table[j] = self.s_table[j], self.s_table[i]
 
@@ -19,7 +19,8 @@ class Rc4:
         self.i = (self.i + 1) % 256
         self.j = (self.j + self.s_table[self.i]) % 256
         # Swap(S[i], S[j])
-        self.s_table[self.i], self.s_table[self.j] = self.s_table[self.j], self.s_table[self.i]
+        self.s_table[self.i], self.s_table[self.j] = \
+            self.s_table[self.j], self.s_table[self.i]
         next_t = (self.s_table[self.i] + self.s_table[self.j]) % 256
         return next_t
 
