@@ -1,12 +1,17 @@
 on: [push, pull_request]
 
+name: Static code review
+
 jobs:
   python-lint:
     runs-on: ubuntu-latest
-    name: pylinter
+    name: Static code review
     steps:
     - name: checkout source repo
       uses: actions/checkout@v2
-
+    - name: setup python
+      uses: actions/setup-python@v2
     - name: linting
       uses: alexanderdamiani/pylinter@v1.2.0
+    - name: run unit tests
+      uses: lpenz/ghaction-pytest-cov@v1
